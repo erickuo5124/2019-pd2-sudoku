@@ -1,6 +1,9 @@
+#include"sudoku.h"
+
 int main()
 {
-    // finish your generate code...
-
+	Sudoku sudoku;
+	sudoku.generate();
+	sudoku.print();
     return 0;
 }
