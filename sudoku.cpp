@@ -174,95 +174,104 @@ void Sudoku::flip(int x) {
 // solve
 
 int Sudoku::solve() {
-	int ans=0;
-	int map2[sudokuSize];
-	vector<int> index;
-	vector<int>::iterator it;
+    int ans=0;
+    int map2[sudokuSize];
+    vector<int> index;
+    vector<int>::iterator it;
 
-	for(int i=0; i<sudokuSize; ++i)
-		if(!map[i]) index.push_back(i);
+    for(int i=0; i<sudokuSize; ++i)
+        if(!map[i]) index.push_back(i);
 
-	it = index.begin();
-	while(it != index.end()){
-		++map[*it];
-		int count[10];
-		int location;
+    it = index.begin();
+    while(it != index.end()) {
+        ++map[*it];
+        int count[10];
+        int location;
 
-		//check row
-		for(int i=0; i<10; ++i) count[i] = 0;
-		for(int i=0; i<9; ++i){
-			location = (*it/9)*9 + i;
-			++count[map[location]];
-			if(count[map[location]] == 2 && map[location] != 0)
-				break;
-		}
-		if(count[map[location]] == 2 && map[location] != 0){
-			if(map[*it] == 9 && it == index.begin() && ans == 1)
-				it = index.end();
-			else if(map[*it] == 9 && it == index.begin() && ans == 0)
-				return 0;
-			else if(map[*it] == 9){
-				while(map[*it] == 9) 
-				{map[*it]=0;--it;}
-			}
-			continue;
-		}
+        //check row
+        for(int i=0; i<10; ++i) count[i] = 0;
+        for(int i=0; i<9; ++i) {
+            location = (*it/9)*9 + i;
+            ++count[map[location]];
+            if(count[map[location]] == 2 && map[location] != 0)
+                break;
+        }
+        if(count[map[location]] == 2 && map[location] != 0) {
+            if(map[*it] == 9 && it == index.begin() && ans == 1)
+                it = index.end();
+            else if(map[*it] == 9 && it == index.begin() && ans == 0)
+                return 0;
+            else if(map[*it] == 9) {
+                while(map[*it] == 9) {
+                    map[*it]=0;
+                    --it;
+                }
+            }
+            continue;
+        }
 
-		//check cell
-		for(int i=0; i<10; ++i) count[i] = 0;
-		for(int i=0; i<9; ++i){
-			location = *it%9 + i*9;
-			++count[map[location]];
-			if(count[map[location]] == 2 && map[location] != 0)
-				break;
-		}
-		if(count[map[location]] == 2 && map[location] != 0){
-			if(map[*it] == 9 && it == index.begin() && ans == 1)
-				it = index.end();
-			if(map[*it] == 9 && it == index.begin() && ans == 0)
-				return 0;
-			else if(map[*it] == 9){
-				while(map[*it] == 9) 
-				{map[*it]=0;--it;}
-			}
-			continue;
-		}
+        //check cell
+        for(int i=0; i<10; ++i) count[i] = 0;
+        for(int i=0; i<9; ++i) {
+            location = *it%9 + i*9;
+            ++count[map[location]];
+            if(count[map[location]] == 2 && map[location] != 0)
+                break;
+        }
+        if(count[map[location]] == 2 && map[location] != 0) {
+            if(map[*it] == 9 && it == index.begin() && ans == 1)
+                it = index.end();
+            if(map[*it] == 9 && it == index.begin() && ans == 0)
+                return 0;
+            else if(map[*it] == 9) {
+                while(map[*it] == 9) {
+                    map[*it]=0;
+                    --it;
+                }
+            }
+            continue;
+        }
 
-		//check cell
-		for(int i=0; i<10; ++i) count[i] = 0;
-		for(int i=0; i<9; ++i){
-			location = (*it/27)*27 + (*it/3)*3-(*it/9)*9 + i%3 + (i/3)*9;
-			++count[map[location]];
-			if(count[map[location]] == 2 && map[location] != 0)
-				break;
-		}
-		if(count[map[location]] == 2 && map[location] != 0){
-			if(map[*it] == 9 && it == index.begin() && ans == 1)
-				it = index.end();
-			if(map[*it] == 9 && it == index.begin() && ans == 0)
-				return 0;
-			else if(map[*it] == 9){
-				while(map[*it] == 9) 
-				{map[*it]=0;--it;}
-			}
+        //check cell
+        for(int i=0; i<10; ++i) count[i] = 0;
+        for(int i=0; i<9; ++i) {
+            location = (*it/27)*27 + (*it/3)*3-(*it/9)*9 + i%3 + (i/3)*9;
+            ++count[map[location]];
+            if(count[map[location]] == 2 && map[location] != 0)
+                break;
+        }
+        if(count[map[location]] == 2 && map[location] != 0) {
+            if(map[*it] == 9 && it == index.begin() && ans == 1)
+                it = index.end();
+            if(map[*it] == 9 && it == index.begin() && ans == 0)
+                return 0;
+            else if(map[*it] == 9) {
+                while(map[*it] == 9) {
+                    map[*it]=0;
+                    --it;
+                }
+            }
 
-			continue;
-		}
+            continue;
+        }
 
-		++it;
-		if(it == index.end()){
-			++ans;
-			if(ans == 2) return ans;
-			for(int i=0; i<sudokuSize; ++i)
-				map2[i] = map[i];
-			
-			--it;
-			while(map[*it] == 9) {map[*it]=0;--it;}
-		}
-	}
+        ++it;
+        if(it == index.end()) {
+            ++ans;
+            if(ans == 2) return ans;
+            for(int i=0; i<sudokuSize; ++i)
+                map2[i] = map[i];
 
-	if(ans == 1)
-		for(int i=0; i<sudokuSize; ++i)
-			map[i] = map2[i];
-	return ans;
+            --it;
+            while(map[*it] == 9) {
+                map[*it]=0;
+                --it;
+            }
+        }
+    }
+
+    if(ans == 1)
+        for(int i=0; i<sudokuSize; ++i)
+            map[i] = map2[i];
+    return ans;
 }

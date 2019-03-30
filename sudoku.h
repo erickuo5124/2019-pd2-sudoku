@@ -6,14 +6,13 @@
  * You can modify this file if needed.             *
  ***************************************************/
 
-class Sudoku
-{
-public:
+class Sudoku {
+  public:
     Sudoku();
-	Sudoku(const int init_map[]);
-	void print();
-	bool isCorrect();
-	static const int sudokuSize = 81;
+    Sudoku(const int init_map[]);
+    void print();
+    bool isCorrect();
+    static const int sudokuSize = 81;
 
     // generate
     void generate();
@@ -28,9 +27,9 @@ public:
     // solve
     int solve();
 
-private:
-	int map[sudokuSize];
-	bool checkUnity(int arr[]);
+  private:
+    int map[sudokuSize];
+    bool checkUnity(int arr[]);
 };
 
 #endif // SUDOKU_H
