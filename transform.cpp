@@ -38,9 +38,9 @@ int main() {
             break;
         }
 
-        sudoku.print();
         cin >> command;
     }
+    sudoku.print();
 
     return 0;
 }
