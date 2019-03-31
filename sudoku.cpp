@@ -127,44 +127,6 @@ void Sudoku::flip(int x) {
 
 
 // solve
-bool Sudoku::checkRow(vector<int> a) {
-    vector<int>::iterator it;
-    int count[10] = {0};
-    int location;
-    for(int i=0; i<9; ++i) {
-        location = (*it/9)*9 + i;
-        ++count[map[location]];
-        if(count[map[location]] == 2 && map[location] != 0)
-            return false;
-    }
-    return true;
-}
-bool Sudoku::checkCol(vector<int> a) {
-    vector<int>::iterator it;
-    int count[10] = {0};
-    int location;
-    for(int i=0; i<9; ++i) {
-        location = *it%9 + i*9;
-        ++count[map[location]];
-        if(count[map[location]] == 2 && map[location] != 0)
-            return false;
-    }
-    return true;
-}
-bool Sudoku::checkCell(vector<int> a) {
-    vector<int>::iterator it;
-    int count[10] = {0};
-    int location;
-    for(int i=0; i<9; ++i) {
-        location = (*it/27)*27 + (*it/3)*3-(*it/9)*9 + i%3 + (i/3)*9;
-        ++count[map[location]];
-        if(count[map[location]] == 2 && map[location] != 0)
-            return false;
-    }
-    return true;
-}
-
-
 int Sudoku::solve() {
     int ans=0;
     int map2[sudokuSize];
@@ -178,11 +140,6 @@ int Sudoku::solve() {
     while(it != index.end()) {
         if(map[*it] != 9)
             ++map[*it];
-
-        if(*it < 3) {
-            cout<<endl;
-            cout << *it <<" "<< map[*it];
-        }
 
         int count[10];
         int location;
@@ -208,8 +165,6 @@ int Sudoku::solve() {
             }
             continue;
         }
-        if(*it < 3)
-            cout<<"#";
         //check col
         for(int i=0; i<10; ++i) count[i] = 0;
         for(int i=0; i<9; ++i) {
@@ -231,8 +186,6 @@ int Sudoku::solve() {
             }
             continue;
         }
-        if(*it < 3)
-            cout<<"#";
         //check cell
         for(int i=0; i<10; ++i) count[i] = 0;
         for(int i=0; i<9; ++i) {
@@ -254,8 +207,6 @@ int Sudoku::solve() {
             }
             continue;
         }
-        if(*it < 3)
-            cout<<"#";
         ++it;
         if(it == index.end()) {
             ++ans;

@@ -12,7 +12,6 @@ class Sudoku {
     Sudoku();
     Sudoku(const int init_map[]);
     void print();
-    bool isCorrect();
     static const int sudokuSize = 81;
 
     // generate
@@ -30,10 +29,6 @@ class Sudoku {
 
   private:
     int map[sudokuSize];
-    bool checkRow(std::vector<int>);
-    bool checkCol(std::vector<int>);
-    bool checkCell(std::vector<int>);
-    bool checkUnity(int arr[]);
 };
 
 #endif // SUDOKU_H
