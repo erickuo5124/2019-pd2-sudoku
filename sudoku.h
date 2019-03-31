@@ -5,6 +5,7 @@
  * Finish your .cpp according to this header file. *
  * You can modify this file if needed.             *
  ***************************************************/
+#include<vector>
 
 class Sudoku {
   public:
@@ -29,6 +30,9 @@ class Sudoku {
 
   private:
     int map[sudokuSize];
+    bool checkRow(std::vector<int>);
+    bool checkCol(std::vector<int>);
+    bool checkCell(std::vector<int>);
     bool checkUnity(int arr[]);
 };
 
