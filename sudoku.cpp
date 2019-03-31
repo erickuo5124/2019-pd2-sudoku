@@ -18,7 +18,7 @@ void Sudoku::print() {
     for(int i=0; i<sudokuSize; ++i) {
         cout << map[i];
 
-        if(i%9 == 8) cout << "\n";
+        if(i%9 == 8) cout << endl;
         else cout << " ";
     }
 }
