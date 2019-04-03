@@ -41,7 +41,7 @@ void Sudoku::generate() {
     while(count>0)
         for(int i=0; i<sudokuSize; ++i) {
             int x = rand()%5;
-            if(x != 0 && x!=2) {
+            if(x != 0 && x!=1 && x!=2 && x!=3) {
                 map[i] = map2[i];
                 count--;
             }
