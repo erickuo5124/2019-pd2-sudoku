@@ -26,13 +26,15 @@ class Sudoku {
 
     // solve
     int solve();
-    void check();
+    bool guess();
     bool only();
     bool fill();
+    void check();
 
   private:
     int map[sudokuSize];
     std::vector<int> index;
+    int ans;
     int count[sudokuSize];
     bool candi[sudokuSize][10]= {0};
 };
