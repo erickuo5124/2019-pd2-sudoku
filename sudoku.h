@@ -29,7 +29,7 @@ class Sudoku {
     bool guess();
     bool only();
     bool fill();
-    void check();
+    bool check();
 
   private:
     int map[sudokuSize];
